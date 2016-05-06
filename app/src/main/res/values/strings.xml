@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">Petlog</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_view_pager_demo">ViewPagerDemo</string>
+    <string name="trackBlog">追蹤Blog</string>
+    <string name="trackPhoto">追蹤照片</string>
+    <string name="hot">熱門</string>
+</resources>
