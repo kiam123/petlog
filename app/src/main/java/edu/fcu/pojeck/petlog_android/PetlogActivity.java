@@ -2,6 +2,7 @@ package edu.fcu.pojeck.petlog_android;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,11 +27,12 @@ public class PetlogActivity extends Activity {
     private ViewPager viewPager;//頁面內容
     private ImageView imageView;// 動畫圖片
     private TextView textView1,textView2,textView3;
-    private List<View> views;// Tab頁面列表
+    private ArrayList<View> views;// Tab頁面列表
     private int offset = 0;// 動畫圖片偏移量
     private int currIndex = 0;// 當前頁卡編號
     private int bmpW;// 動畫圖片寬度
     private View view1,view2,view3;//各個頁卡
+    private LinearLayout speaker,home,settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class PetlogActivity extends Activity {
         InitImageView();
         InitTextView();
         InitViewPager();
+        InitLinearLayout();
     }
 
     private void InitViewPager() {
@@ -69,6 +73,15 @@ public class PetlogActivity extends Activity {
         textView3.setOnClickListener(new MyOnClickListener(2));
     }
 
+    private void InitLinearLayout(){
+        speaker = (LinearLayout)findViewById(R.id.speaker);
+        home = (LinearLayout)findViewById(R.id.home);
+        settings = (LinearLayout)findViewById(R.id.settings);
+
+        speaker.setOnClickListener(MySpeakerListener);
+        home.setOnClickListener(MyHomeListener);
+        settings.setOnClickListener(MySettingListener);
+    }
     /**
      2      * 初始化动画
      3 */
@@ -98,6 +111,33 @@ public class PetlogActivity extends Activity {
         }
 
     }
+
+    private View.OnClickListener MyHomeListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(PetlogActivity.this,HomeActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener MySettingListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(PetlogActivity.this,SettingActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener MySpeakerListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(PetlogActivity.this,NotificationActivity.class);
+            startActivity(intent);
+        }
+    };
 
     public class MyViewPagerAdapter extends PagerAdapter {
         private List<View> mListViews;
