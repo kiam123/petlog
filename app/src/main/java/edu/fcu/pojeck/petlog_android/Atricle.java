@@ -9,6 +9,6 @@ public class Atricle {//the data struct of article
     private int ownerid;
     private int id;//the id of itself
     private int likeid;//match the like  this  atricle gets in like database
-    private int messageid;//match the leavemessage in leavemessage database
+    private int messageid[];//match the leavemessage in leavemessage database
     private String date;
 }
