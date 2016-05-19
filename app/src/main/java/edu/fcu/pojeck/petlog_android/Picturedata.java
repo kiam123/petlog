@@ -43,7 +43,7 @@ public class Picturedata {
         this.word=word;
         this.ownerid=ownerid;
         this.date=date;
-        this.id=PB.newapicture();
+        PB.newapicture();
         this.likeid=LB.newalike(this.id);
 
     }

@@ -19,6 +19,9 @@ public class PictureBase {
 
         }
     }
+    public void newapicture(){
+
+    }
     void addPicture(Picturedata newone){
         database.add(newone);
     }
