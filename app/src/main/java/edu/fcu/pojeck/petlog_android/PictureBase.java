@@ -15,24 +15,25 @@ public class PictureBase {
     PictureBase(){
         List dafault= getImagesFromSD();
         database=new LinkedList<Picturedata>();
-        for (int i=0 ;i<10 ;i++){
 
-        }
     }
-    public void newapicture(){
-
+    public void newapicture(File[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB){
+        int newid=database.size();
+        Picturedata pdata=new Picturedata(icon,word,ownerid,date,MB,LB,newid);
+        database.add(pdata);
     }
     void addPicture(Picturedata newone){
         database.add(newone);
     }
-    Picturedata getPicture(int id){
+    public Picturedata getPicture(int id){
         for(int i=0;i<database.size(); i++){
-            if(((Picturedata)database.get(i)).getid()==id){
+            if(((Picturedata)database.get(i)).getId()==id){
                 return (Picturedata)database.get(i);
             }
         }
         return null;
     }
+
     //find picture in SDcard-------------------
     public static List<String> getImagesFromSD() {
         List<String> imagePaths = new ArrayList<String>();

@@ -13,6 +13,7 @@ public class Picturedata {
     private int likeid;//match the like  this  atricle gets in like database
     private int messageid[];//match the leavemessage in leavemessage database
     private String date;
+    public final static int MAXMESSAGE=100;//how much message it can contain
 
     public int getLikeid() {
         return likeid;
@@ -33,19 +34,18 @@ public class Picturedata {
     public String getDate() {
         return date;
     }
-
-    public int getid(){
-        return id;
-
+    public void setId(int id){
+        this.id=id;
     }
-    Picturedata(File[] icon, String word, int ownerid, String date,PictureBase PB,messageBase MB,likeBase LB){
+
+    Picturedata(File[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB,int newid){
         this.icon=icon;
         this.word=word;
         this.ownerid=ownerid;
         this.date=date;
-        PB.newapicture();
+        this.id=newid;
         this.likeid=LB.newalike(this.id);
-
+        this.messageid=new int[MAXMESSAGE];
     }
 
     public String getWord() {
