@@ -158,7 +158,7 @@ public class PetlogActivity extends Activity {
 
             switch(position){
                 case 0:
-
+//
                     break;
                 case 1:
 
