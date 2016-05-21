@@ -11,9 +11,7 @@ public class likeBase {
         database=new LinkedList<like>();
 
     }
-    void addlike(like newone){
-        database.add(newone);
-    }
+
     like getlike(int id){
         for(int i=0;i<database.size(); i++){
             if(((like)database.get(i)).getid()==id){

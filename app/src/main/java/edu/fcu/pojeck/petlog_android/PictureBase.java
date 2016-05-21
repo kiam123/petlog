@@ -17,10 +17,11 @@ public class PictureBase {
         database=new LinkedList<Picturedata>();
 
     }
-    public void newapicture(File[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB){
+    public int newapicture(File[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB){
         int newid=database.size();
         Picturedata pdata=new Picturedata(icon,word,ownerid,date,MB,LB,newid);
         database.add(pdata);
+        return pdata.getId();
     }
     void addPicture(Picturedata newone){
         database.add(newone);

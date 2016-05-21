@@ -7,7 +7,7 @@ public class message {
    private String text;
    private int host_atricleId;//the is of which atricle this message is in
    private int id;
-    private int leave_rId;//the id of the user who send it;
+    private int leaver_Id;//the id of the user who send it;
     public int getid(){
         return id;
     }
@@ -16,6 +16,6 @@ public class message {
         this.text = text;
         this.host_atricleId = host_atricleId;
         this.id = id;
-        this.leave_rId = leave_rId;
+        this.leaver_Id = leave_rId;
     }
 }

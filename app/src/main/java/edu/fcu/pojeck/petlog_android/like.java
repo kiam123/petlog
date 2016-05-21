@@ -14,9 +14,9 @@ public class like {
         host_atricleId=articleId;
         this.id=id;
     }
-    public void add(int likerId){
-        liker.add(likerId);
-    }
+    public void add(int liker_Id){
+        liker.add(liker_Id);
+    } //like_Id is rhe id of who click it
     public int getnum(){
         return liker.size();
     }
