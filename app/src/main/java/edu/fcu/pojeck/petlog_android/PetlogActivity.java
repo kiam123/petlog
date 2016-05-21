@@ -155,6 +155,19 @@ public class PetlogActivity extends Activity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {  //設計viewpager的地方
             container.addView(mListViews.get(position), 0);
+
+            switch(position){
+                case 0:
+
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+            }
+
             return mListViews.get(position);
         }
 

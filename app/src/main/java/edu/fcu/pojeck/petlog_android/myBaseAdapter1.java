@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 /**
  * Created by kiam on 21/05/2016.
  */
-public class myBaseAdapter extends BaseAdapter {
+public class myBaseAdapter1 extends BaseAdapter {
     int count=0;
     @Override
     public int getCount() {
