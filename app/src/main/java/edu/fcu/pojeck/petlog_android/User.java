@@ -7,6 +7,7 @@ import java.util.LinkedList;
  * Created by fomsing on 2016/5/21.
  */
 public class User {
+    int id;
     File head;//頭像
     String name;
     String account;//帳號
@@ -20,7 +21,7 @@ public class User {
     LinkedList notice;//
     boolean sex;//性別true為男性,false為女性
 
-    public User(File head, String name, String account, String password, boolean sex) {
+    public User(File head, String name, String account, String password, boolean sex,int id) {
         this.head = head;
         this.name = name;
         this.account = account;
@@ -32,6 +33,7 @@ public class User {
         trace_id= new LinkedList();
         Atriclepoor= new LinkedList();
         Picturepoor=  new LinkedList();
+        notice=new LinkedList();
     }
 
     public File getHead() {
@@ -41,6 +43,8 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public int getId(){return id;}
 
     public String getAccount() {
         return account;
@@ -53,12 +57,18 @@ public class User {
     public boolean isSex() {
         return sex;
     }
+
     public void fansAdd(int fansid){//增加一個被追蹤者
         this.fans_id.add(fansid);
     }
 
-    public void trace(int traceid){
+    public void trace(int traceid,UserBase UB){
         this.trace_id.add(traceid);
+
+        User tracer=UB.getuser(traceid);
+        if(tracer!=null){
+            tracer.fansAdd(this.id);
+        }
     }
 
 }
