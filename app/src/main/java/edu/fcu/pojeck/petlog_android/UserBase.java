@@ -1,5 +1,7 @@
 package edu.fcu.pojeck.petlog_android;
 
+import android.os.Environment;
+
 import java.io.File;
 import java.util.LinkedList;
 
@@ -17,5 +19,11 @@ public class UserBase {
                 return ((User)database.get(i));
         }
         return null;
+    }
+    public static File getdefaultImage(){//測試用method,從sd卡內獲得預設頭像
+        String path = Environment.getExternalStorageDirectory().getPath();
+        File defaulthead=new File(path+"/default1.jpg");
+        return defaulthead;
+
     }
 }
