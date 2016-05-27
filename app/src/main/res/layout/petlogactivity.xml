@@ -73,41 +73,66 @@
             android:id="@+id/speaker"
             android:layout_weight="0.33">
 
-            <ImageView
-                android:id="@+id/spker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:gravity="center"
-                android:background="@drawable/speaker"
-                android:textColor="#000000"
-                android:textSize="20.0dip"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/linearLayout"
+                    android:layout_marginLeft="40dp">
+
+                    <ImageView
+                        android:id="@+id/spker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:background="@drawable/notification2"
+                        android:textColor="#000000"
+                        android:textSize="20.0dip"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/linearLayout"
+                        android:layout_toEndOf="@+id/linearLayout"
+                        android:layout_marginBottom="2dp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/notification_num"></LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/home"
             android:layout_weight="0.33">
 
-            <ImageView
-                android:id="@+id/h"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.0"
-                android:gravity="center"
-                android:background="@drawable/home"
-                android:textColor="#000000"
-                android:textSize="20.0dip"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp" />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/h"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:gravity="center"
+                    android:background="@drawable/home"
+                    android:textColor="#000000"
+                    android:textSize="20.0dip"
+                    android:layout_weight="0"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -118,18 +143,38 @@
             android:id="@+id/settings"
             android:layout_weight="0.33">
 
-            <ImageView
-                android:id="@+id/set"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:background="@drawable/settings"
-                android:textColor="#000000"
-                android:textSize="20.0dip"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="5dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/linearLayout3"
+                    android:layout_marginLeft="70dp">
+
+
+                    <ImageView
+                        android:id="@+id/set"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:gravity="center"
+                        android:background="@drawable/settings"
+                        android:textColor="#000000"
+                        android:textSize="20.0dip"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/linearLayout3"
+                        android:layout_toEndOf="@+id/linearLayout3"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="10dp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
         </LinearLayout>
 
     </LinearLayout>

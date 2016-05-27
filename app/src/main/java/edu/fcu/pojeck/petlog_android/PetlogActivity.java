@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.readystatesoftware.viewbadger.BadgeView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +44,11 @@ public class PetlogActivity extends Activity {
         InitTextView();
         InitViewPager();
         InitLinearLayout();
+
+        LinearLayout notification = (LinearLayout)findViewById(R.id.notification_num);
+        BadgeView n = new BadgeView(this, notification);
+        n.setText("3");
+        n.show();
     }
 
     private void InitViewPager() {
