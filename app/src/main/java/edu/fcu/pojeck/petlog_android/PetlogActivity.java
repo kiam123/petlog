@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,11 @@ public class PetlogActivity extends Activity {
     private int bmpW;// 動畫圖片寬度
     private View view1,view2,view3;//各個頁卡
     private LinearLayout speaker,home,settings;
+    private ArrayList PicturePath;//用来存放sd卡内的所有图片路径,在onCreate内使用
+    private likeBase likeBase;
+    private PictureBase pictureBase;
+    private messageBase messageBase;
+    private UserBase userBase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,14 @@ public class PetlogActivity extends Activity {
         InitTextView();
         InitViewPager();
         InitLinearLayout();
+        PicturePath=PictureBase.getImagesFromSD();//现在Picture内存放着你放在SD卡目录内的所有图片路径(SD卡内文件夹内的不算)
+        likeBase=new likeBase();
+        pictureBase=new PictureBase();
+        messageBase=new messageBase();
+        userBase=new UserBase();
+        File[] taskfile=new File[1];
+       taskfile[0]=new File((String)PicturePath.get(0));
+        pictureBase.newapicture(taskfile,"this is my first task",0,"2016.5.28", messageBase,likeBase);
     }
 
     private void InitViewPager() {
@@ -155,6 +169,7 @@ public class PetlogActivity extends Activity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {  //設計viewpager的地方
             container.addView(mListViews.get(position), 0);
+
 
             switch(position){
                 case 0:
