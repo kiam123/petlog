@@ -1,6 +1,5 @@
 package edu.fcu.pojeck.petlog_android;
 
-import android.graphics.Bitmap;
 import android.os.Environment;
 
 import java.io.File;

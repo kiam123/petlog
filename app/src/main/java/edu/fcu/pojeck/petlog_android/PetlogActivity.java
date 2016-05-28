@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,9 +47,9 @@ public class PetlogActivity extends Activity {
         InitTextView();
         InitViewPager();
         InitLinearLayout();
-        PicturePath=PictureBase.getImagesFromSD();//现在Picture内存放着你放在SD卡目录内的所有图片路径(SD卡内文件夹内的不算)
+        //PicturePath=PictureBase.getImagesFromSD();//现在Picture内存放着你放在SD卡目录内的所有图片路径(SD卡内文件夹内的不算)
         likeBase=new likeBase();
-        pictureBase=new PictureBase();
+        //pictureBase=new PictureBase();
         messageBase=new messageBase();
         userBase=new UserBase();
        /* File[] taskfile=new File[1];
