@@ -53,9 +53,9 @@ public class PetlogActivity extends Activity {
         pictureBase=new PictureBase();
         messageBase=new messageBase();
         userBase=new UserBase();
-        File[] taskfile=new File[1];
+       /* File[] taskfile=new File[1];
        taskfile[0]=new File((String)PicturePath.get(0));
-        pictureBase.newapicture(taskfile,"this is my first task",0,"2016.5.28", messageBase,likeBase);
+        pictureBase.newapicture(taskfile,"this is my first task",0,"2016.5.28", messageBase,likeBase);*/
     }
 
     private void InitViewPager() {
