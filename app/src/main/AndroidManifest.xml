@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.fcu.pojeck.petlog_android" >
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -27,6 +29,10 @@
         <activity
             android:name=".SettingActivity"
             android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name=".CommendsActivity"
+            android:label="@string/title_activity_comments" >
         </activity>
     </application>
 
