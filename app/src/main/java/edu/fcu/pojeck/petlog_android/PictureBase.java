@@ -1,6 +1,7 @@
 package edu.fcu.pojeck.petlog_android;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import java.io.File;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by fomsing on 2016/5/14.
  */
 public class PictureBase {
-    public static int nowindex;//记录getdefaultbitmapfromSD的所引致
+    public static int nowindex=0;//记录getdefaultbitmapfromSD的所引致
     private LinkedList database;
     PictureBase(){
         List dafault= getImagesFromSD();
@@ -58,9 +59,17 @@ public class PictureBase {
         }
         return imagePaths;
     }
-   /* public static Bitmap getdefaultbitmapfromSD(){
-        ArrayList
-    }*/
+   public static Bitmap getdefaultbitmapfromSD(){
+        ArrayList list=getImagesFromSD();
+       Bitmap map=null;
+       if(nowindex<list.size()){
+           map= BitmapFactory.decodeFile((String)list.get(nowindex++));
+       }
+       if (nowindex>=list.size()){
+           nowindex=0;
+       }
+       return map;
+    }
 
     private static String[] imageFormatSet = new String[]{"jpg","png","gif"};
     private static boolean isImageFile(String path) {
