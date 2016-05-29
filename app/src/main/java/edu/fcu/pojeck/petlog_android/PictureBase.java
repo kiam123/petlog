@@ -26,7 +26,7 @@ public class PictureBase {
         return pdata.getId();
     }
     void addPicture(Picturedata newone){
-        database.add(newone);
+        database.add(newone);//
     }
     public Picturedata getPicture(int id){
         for(int i=0;i<database.size(); i++){
