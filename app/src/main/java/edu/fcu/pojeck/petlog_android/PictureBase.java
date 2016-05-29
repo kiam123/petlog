@@ -1,5 +1,6 @@
 package edu.fcu.pojeck.petlog_android;
 
+import android.graphics.Bitmap;
 import android.os.Environment;
 
 import java.io.File;
@@ -18,7 +19,7 @@ public class PictureBase {
         database=new LinkedList<Picturedata>();
 
     }
-    public int newapicture(File[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB){
+    public int newapicture(Bitmap[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB){
         int newid=database.size();
         Picturedata pdata=new Picturedata(icon,word,ownerid,date,MB,LB,newid);
         database.add(pdata);
