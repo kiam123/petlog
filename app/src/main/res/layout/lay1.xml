@@ -26,19 +26,22 @@
                     android:orientation="horizontal"
                     android:layout_width="70dp"
                     android:layout_height="55dp"
-                    android:layout_marginLeft="20dp" >
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageView4" />
+                        android:id="@+id/Humanhead" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="發表文章"
-                        android:id="@+id/textView4" />
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="發表文章"
+                    android:id="@+id/commed"
+                    android:layout_marginTop="20dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -50,9 +50,9 @@ public class PetlogActivity extends Activity {
         InitTextView();
         InitViewPager();
         InitLinearLayout();
-        //PicturePath=PictureBase.getImagesFromSD();//现在Picture内存放着你放在SD卡目录内的所有图片路径(SD卡内文件夹内的不算)
+        PicturePath=PictureBase.getImagesFromSD();//现在Picture内存放着你放在SD卡目录内的所有图片路径(SD卡内文件夹内的不算)
         likeBase=new likeBase();
-        //pictureBase=new PictureBase();
+        pictureBase=new PictureBase();
         messageBase=new messageBase();
         userBase=new UserBase();
        defaultPicture=new Bitmap[1];
@@ -173,15 +173,16 @@ public class PetlogActivity extends Activity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {  //設計viewpager的地方
             container.addView(mListViews.get(position), 0);
-            ImageView imgView4;
+            ImageView Humanhead;
 
             switch(position){
                 case 0:
-                    imgView4=(ImageView)findViewById(R.id.imageView4);
-                    //imgView4.setImageBitmap(defaultPicture[0]);
+                    Humanhead=(ImageView)findViewById(R.id.Humanhead);
+                    Humanhead.setImageBitmap(defaultPicture[0]);
                     break;
                 case 1:
-
+                    Humanhead=(ImageView)findViewById(R.id.Humanhead);
+                    Humanhead.setImageBitmap(defaultPicture[0]);
                     break;
                 case 2:
 
