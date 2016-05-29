@@ -3,6 +3,7 @@ package edu.fcu.pojeck.petlog_android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,7 @@ public class PetlogActivity extends Activity {
     private PictureBase pictureBase;
     private messageBase messageBase;
     private UserBase userBase;
+    Bitmap[] defaultPicture;//用于暂存预设图片
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +55,11 @@ public class PetlogActivity extends Activity {
         //pictureBase=new PictureBase();
         messageBase=new messageBase();
         userBase=new UserBase();
-       /* File[] taskfile=new File[1];
-       taskfile[0]=new File((String)PicturePath.get(0));
-        pictureBase.newapicture(taskfile,"this is my first task",0,"2016.5.28", messageBase,likeBase);*/
+       defaultPicture=new Bitmap[1];
+       defaultPicture[0]=BitmapFactory.decodeFile((String)PicturePath.get(0));
+        Toast.makeText(this,"find "+PicturePath.size()+" picture",Toast.LENGTH_LONG).show();
+
+        pictureBase.newapicture(defaultPicture,"this is my first task",0,"2016.5.28", messageBase,likeBase);
     }
 
     private void InitViewPager() {
@@ -168,11 +173,12 @@ public class PetlogActivity extends Activity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {  //設計viewpager的地方
             container.addView(mListViews.get(position), 0);
-
+            ImageView imgView4;
 
             switch(position){
                 case 0:
-//
+                    imgView4=(ImageView)findViewById(R.id.imageView4);
+                    //imgView4.setImageBitmap(defaultPicture[0]);
                     break;
                 case 1:
 
