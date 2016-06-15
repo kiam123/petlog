@@ -70,6 +70,14 @@ public class PictureBase {
        }
        return map;
     }
+    public  static ArrayList getallpictureinSD(){
+        ArrayList list=getImagesFromSD();
+        ArrayList bitmaplist=new ArrayList();
+        for (int i=0;i<list.size();i++) {
+            bitmaplist.add(BitmapFactory.decodeFile((String) list.get(i)));
+        }
+        return bitmaplist;
+    }
 
     private static String[] imageFormatSet = new String[]{"jpg","png","gif"};
     private static boolean isImageFile(String path) {
