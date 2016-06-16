@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,11 +26,18 @@ public class PictureChoose extends AppCompatActivity {//从相机中加入图片
         final ArrayList chooseint=new ArrayList();
 
         mainView =(GridView)findViewById(R.id.picturegird);
-        mainView.setAdapter(new ChooseAdapter(this , bitmaparray));
+        ArrayList newList=new ArrayList<BitmapInt>();
+        for(int i=0;i<bitmaparray.size();i++){
+            newList.add(new BitmapInt((Bitmap)bitmaparray.get(i),false));
+        }
+        final ChooseAdapter adapter=new ChooseAdapter(this , newList);
+        mainView.setAdapter(adapter);
         AdapterView.OnItemClickListener onItemClickListener=new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(PictureChoose.this,"postion:"+position,Toast.LENGTH_SHORT).show();
+                adapter.changecolor(position);
                 chooseint.add(position);
             }
         };
@@ -52,5 +61,7 @@ public class PictureChoose extends AppCompatActivity {//从相机中加入图片
             }
         };
         sure.setOnClickListener(sureback);
+
     }
+
 }

@@ -2,6 +2,7 @@ package edu.fcu.pojeck.petlog_android;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -36,17 +38,24 @@ public class ChooseAdapter extends ArrayAdapter{
             layout = (LinearLayout) convertView;
         }
         ImageView picture=(ImageView)layout.findViewById(R.id.itempicture);
-        Bitmap oldbit=(Bitmap) getItem(position);
+        TextView colorview=(TextView) layout.findViewById(R.id.chooseornot);
+        Bitmap oldbit=((BitmapInt) getItem(position)).picture;
 
        int oldW=oldbit.getWidth();
         int oldH=oldbit.getHeight();
         float scaleWidth =  (float)500 / (float)oldW;
-        float scaleHeight = (float)500/ (float)oldH;
+        float scaleHeight = (float)700/ (float)oldH;
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleHeight);
         Toast.makeText(context,"scW:"+scaleWidth+" scH:"+scaleHeight,Toast.LENGTH_SHORT).show();
         Bitmap newbit=Bitmap.createBitmap(oldbit, 0, 0, oldW, oldH, matrix, true);
         picture.setImageBitmap(newbit);
+        if(((BitmapInt) getItem(position)).chosen){
+            colorview.setBackgroundColor(android.graphics.Color.RED);
+        }
+        else{
+
+        }
        // picture.setImageBitmap(scaleImage((Bitmap) getItem(position), 400, 500));
         return layout;
     }
@@ -74,6 +83,9 @@ public class ChooseAdapter extends ArrayAdapter{
             bm = null;
         }
         return newbm;
+    }
+    public void changecolor(int position){
+        ((BitmapInt) getItem(position)).chosen=true;
     }
 
  }

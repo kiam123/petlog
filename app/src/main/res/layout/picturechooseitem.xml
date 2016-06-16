@@ -5,11 +5,17 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <ImageView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/itempicture"
-        android:longClickable="true" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/itempicture"
+            android:longClickable="true" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
