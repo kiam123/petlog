@@ -1,17 +1,47 @@
 package edu.fcu.pojeck.petlog_android;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class CommendsActivity extends AppCompatActivity {
-
+    private Button determine,choose_Picture;
+    private EditText et_msg;
+    private static final int  KEY_PICTURE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commends);
+
+        InitView();
     }
+
+    public void InitView(){
+        determine = (Button)findViewById(R.id.determine);
+        choose_Picture = (Button)findViewById(R.id.choose_Picture);
+        et_msg = (EditText)findViewById(R.id.et_msg);
+
+
+        choose_Picture.setOnClickListener(choosePictureListener);
+    }
+
+
+    // -------------------       ↓設定監聽器↓       -------------------//
+    private View.OnClickListener choosePictureListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(CommendsActivity.this,PictureChoose.class);
+            startActivityForResult(intent,KEY_PICTURE);
+        }
+    };
+    // -------------------       ↑設定監聽器↑       -------------------//
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

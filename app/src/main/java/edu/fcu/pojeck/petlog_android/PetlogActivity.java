@@ -40,6 +40,7 @@ public class PetlogActivity extends Activity {
     private messageBase messageBase;
     private UserBase userBase;
     private View viewlay1;
+    private static final int  KEY_COMMENT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,16 @@ public class PetlogActivity extends Activity {
 
     private void InitViewPager() {
         viewPager=(ViewPager) findViewById(R.id.vPager);
+
+        viewPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent();
+                intent.setClass(PetlogActivity.this,CommendsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         views=new ArrayList<View>();
         LayoutInflater inflater=getLayoutInflater();
         view1=inflater.inflate(R.layout.lay1, null);
@@ -93,20 +104,22 @@ public class PetlogActivity extends Activity {
         speaker = (LinearLayout)findViewById(R.id.speaker);
         home = (LinearLayout)findViewById(R.id.home);
         settings = (LinearLayout)findViewById(R.id.settings);
-        commends = (LinearLayout)viewlay1.findViewById(R.id.commends);
+
 
         speaker.setOnClickListener(MySpeakerListener);
         home.setOnClickListener(MyHomeListener);
         settings.setOnClickListener(MySettingListener);
+        //commends = (LinearLayout)viewlay1.findViewById(R.id.commends);
+
         //commends.setOnClickListener(MyCommendsListener);
-        commends.setOnClickListener(new View.OnClickListener() {
+        /*commends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent();
                 intent.setClass(PetlogActivity.this,CommendsActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
     /**
      2      * 初始化动画
@@ -132,7 +145,7 @@ public class PetlogActivity extends Activity {
         //Toast.makeText(this,"find "+PicturePath.size()+" picture",Toast.LENGTH_LONG).show();
     }
 
-    // -------------------       設定監聽器       -------------------//
+    // -------------------       ↓設定監聽器↓       -------------------//
     private class MyOnClickListener implements View.OnClickListener {
         private int index=0;
         public MyOnClickListener(int i){
@@ -175,11 +188,11 @@ public class PetlogActivity extends Activity {
         public void onClick(View v) {
             Intent intent= new Intent();
             intent.setClass(PetlogActivity.this,CommendsActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,KEY_COMMENT);
         }
     };
 
-    // -------------------       設定監聽器       -------------------//
+    // -------------------       ↑設定監聽器↑       -------------------//
 
 
     public class MyViewPagerAdapter extends PagerAdapter {
@@ -203,7 +216,16 @@ public class PetlogActivity extends Activity {
                 case 0:
                     Humanhead=(ImageView)findViewById(R.id.Humanhead);
                     Humanhead.setImageBitmap(PictureBase.getdefaultbitmapfromSD());
-
+                    commends = (LinearLayout)findViewById(R.id.commends);
+                    commends.setOnClickListener(MyCommendsListener);
+                    /*commends.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent();
+                            intent.setClass(PetlogActivity.this, CommendsActivity.class);
+                            startActivity(intent);
+                        }
+                    });*/
                     break;
                 case 1:
                     Humanhead=(ImageView)findViewById(R.id.Humanhead);

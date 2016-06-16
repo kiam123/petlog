@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".PictureChoose"
+            android:name=".PetlogActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,14 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <!--<activity
             android:name=".PetlogActivity"
             android:label="PetlogActivity">
-            </activity>
-        <!--<activity
+            </activity>-->
+        <activity
             android:name=".PictureChoose"
             android:label="@string/title_activity_picture_choose" >
-        </activity>-->
+        </activity>
         <activity
             android:name=".NotificationActivity"
             android:label="@string/title_activity_notification" >
