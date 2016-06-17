@@ -17,13 +17,15 @@ import java.util.ArrayList;
 public class PictureChoose extends AppCompatActivity {//从相机中加入图片的
     GridView mainView;
     Button sure;
-    Bitmap[] choose;
+
+    public static final String key="pictureIndex";
+    public static final int fine=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_choose);
         final ArrayList bitmaparray=PictureBase.getallpictureinSD();
-        final ArrayList chooseint=new ArrayList();
+        final ArrayList chooseint=new ArrayList<Integer>();
 
         mainView =(GridView)findViewById(R.id.picturegird);
         ArrayList newList=new ArrayList<BitmapInt>();
@@ -38,7 +40,7 @@ public class PictureChoose extends AppCompatActivity {//从相机中加入图片
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(PictureChoose.this,"postion:"+position,Toast.LENGTH_SHORT).show();
                 adapter.changecolor(position);
-                chooseint.add(position);
+                chooseint.add(new Integer(position));
             }
         };
         mainView.setOnItemClickListener(onItemClickListener);
@@ -50,14 +52,14 @@ public class PictureChoose extends AppCompatActivity {//从相机中加入图片
             @Override
             public void onClick(View v) {
 
-                choose=new Bitmap[chooseint.size()];//用使用者选择的图片的引数(postion)来创建bitmaparray
+                /*choose=new Bitmap[chooseint.size()];//用使用者选择的图片的引数(postion)来创建bitmaparray
                 for (int i=0; i<chooseint.size(); i++){
                     choose[i]=(Bitmap)bitmaparray.get(i);
-                }
+                }*/
                 Intent back=new Intent();
-                back.putExtra("picture", choose);
-                back.setClass(PictureChoose.this,PetlogActivity.class);
-                startActivity(back);
+                back.putExtra(key, chooseint);
+                setResult(fine,back);
+                finish();
             }
         };
         sure.setOnClickListener(sureback);

@@ -1,6 +1,7 @@
 package edu.fcu.pojeck.petlog_android;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -8,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class CommendsActivity extends AppCompatActivity {
     private Button determine,choose_Picture;
@@ -42,6 +46,22 @@ public class CommendsActivity extends AppCompatActivity {
     };
     // -------------------       ↑設定監聽器↑       -------------------//
 
+    @Override
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Toast.makeText(this,"code"+requestCode,Toast.LENGTH_SHORT).show();
+        if (requestCode == KEY_PICTURE){
+            ArrayList indexarray=data.getIntegerArrayListExtra(PictureChoose.key);
+            Toast.makeText(this,"result size:"+indexarray.size(),Toast.LENGTH_SHORT).show();
+            //ArrayList picturearray=PictureBase.getallpictureinSD();
+            /*ArrayList<Bitmap> resultArray=new ArrayList<Bitmap>();
+            for (int i=0; i<indexarray.size(); i++){
+                resultArray.add(picturearray.get(((Integer)indexarray.get(i)).intValue()));
+            }*/
+
+            //reaultArray就是選擇出來的圖片組
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

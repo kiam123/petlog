@@ -16,7 +16,7 @@ public class PictureBase {
     public static int nowindex=0;//记录getdefaultbitmapfromSD的所引致
     private LinkedList database;
     PictureBase(){
-        List dafault= getImagesFromSD();
+        List dafault= getImagesPathFromSD();
         database=new LinkedList<Picturedata>();
 
     }
@@ -39,7 +39,7 @@ public class PictureBase {
     }
 
     //find picture in SDcard-------------------
-    public static ArrayList<String> getImagesFromSD() {
+    public static ArrayList<String> getImagesPathFromSD() {
         ArrayList<String> imagePaths = new ArrayList<String>();
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)
@@ -60,7 +60,7 @@ public class PictureBase {
         return imagePaths;
     }
    public static Bitmap getdefaultbitmapfromSD(){
-        ArrayList list=getImagesFromSD();
+        ArrayList list=getImagesPathFromSD();
        Bitmap map=null;
        if(nowindex<list.size()){
            map= BitmapFactory.decodeFile((String)list.get(nowindex++));
@@ -71,7 +71,7 @@ public class PictureBase {
        return map;
     }
     public  static ArrayList getallpictureinSD(){
-        ArrayList list=getImagesFromSD();
+        ArrayList list=getImagesPathFromSD();
         ArrayList bitmaplist=new ArrayList();
         for (int i=0;i<list.size();i++) {
             bitmaplist.add(BitmapFactory.decodeFile((String) list.get(i)));
