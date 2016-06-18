@@ -1,10 +1,12 @@
 package edu.fcu.pojeck.petlog_android;
 
+import android.graphics.Bitmap;
+
 import java.io.File;
 
 
 public class Atricle {//the data struct of article
-    private File[] icon;
+    private Bitmap[] icon;
     private String word;
     private int ownerid;
     private int id;//the id of itself
@@ -14,7 +16,7 @@ public class Atricle {//the data struct of article
     private String date;
     public final static int MAXMESSAGE=100;//how much message it can contain
 
-    Atricle(File[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB,int newid){
+    Atricle(Bitmap[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB,int newid){
         this.icon=icon;
         this.word=word;
         this.ownerid=ownerid;
@@ -29,7 +31,7 @@ public class Atricle {//the data struct of article
         return likeid;
     }
 
-    public File[] getIcon() {
+    public Bitmap[] getIcon() {
         return icon;
     }
 
