@@ -2,9 +2,7 @@ package edu.fcu.pojeck.petlog_android;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Matrix;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +19,7 @@ import java.util.List;
  */
 public class ChooseAdapter extends ArrayAdapter{
     Context context;
+
     public ChooseAdapter(Context context, List objects) {
         super(context, 0, objects);
         this.context=context;
@@ -47,7 +46,7 @@ public class ChooseAdapter extends ArrayAdapter{
         float scaleHeight = (float)700/ (float)oldH;
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleHeight);
-        Toast.makeText(context,"scW:"+scaleWidth+" scH:"+scaleHeight,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"scW:"+scaleWidth+" scH:"+scaleHeight,Toast.LENGTH_SHORT).show();
         Bitmap newbit=Bitmap.createBitmap(oldbit, 0, 0, oldW, oldH, matrix, true);
         picture.setImageBitmap(newbit);
         if(((BitmapInt) getItem(position)).chosen){

@@ -1,13 +1,11 @@
 package edu.fcu.pojeck.petlog_android;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -18,7 +16,7 @@ public class PictureChoose extends AppCompatActivity {//从相机中加入图片
     GridView mainView;
     Button sure;
 
-    public static final String key="pictureIndex";
+    public static final String KEY_PICTUREINDEX="PICTUREINDEX";
     public static final int fine=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +55,7 @@ public class PictureChoose extends AppCompatActivity {//从相机中加入图片
                     choose[i]=(Bitmap)bitmaparray.get(i);
                 }*/
                 Intent back=new Intent();
-                back.putExtra(key, chooseint);
+                back.putExtra(KEY_PICTUREINDEX, chooseint);
                 setResult(fine,back);
                 finish();
             }

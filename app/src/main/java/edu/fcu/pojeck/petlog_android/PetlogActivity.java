@@ -41,6 +41,7 @@ public class PetlogActivity extends Activity {
     private UserBase userBase;
     private View viewlay1;
     private static final int  KEY_COMMENT = 1;
+    ArrayList indexarray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,6 @@ public class PetlogActivity extends Activity {
         InitViewPager();
         InitLinearLayout();
         InitBase();
-
     }
 
     private void InitInflaster(){
@@ -143,6 +143,14 @@ public class PetlogActivity extends Activity {
         messageBase=new messageBase();
         userBase=new UserBase();
         //Toast.makeText(this,"find "+PicturePath.size()+" picture",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == KEY_COMMENT){
+            indexarray = data.getIntegerArrayListExtra(PictureChoose.KEY_PICTUREINDEX);
+        }
     }
 
     // -------------------       ↓設定監聽器↓       -------------------//
