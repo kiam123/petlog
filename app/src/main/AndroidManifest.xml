@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.fcu.pojeck.petlog_android" >
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -16,6 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--<activity
+            android:name=".PetlogActivity"
+            android:label="PetlogActivity">
+            </activity>-->
+        <activity
+            android:name=".PictureChoose"
+            android:label="@string/title_activity_picture_choose" >
+        </activity>
         <activity
             android:name=".NotificationActivity"
             android:label="@string/title_activity_notification" >
@@ -27,6 +37,10 @@
         <activity
             android:name=".SettingActivity"
             android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name=".CommendsActivity"
+            android:label="@string/title_activity_comments" >
         </activity>
     </application>
 

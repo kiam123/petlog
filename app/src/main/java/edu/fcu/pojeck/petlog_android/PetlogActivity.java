@@ -19,8 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.readystatesoftware.viewbadger.BadgeView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,24 +33,46 @@ public class PetlogActivity extends Activity {
     private int bmpW;// 動畫圖片寬度
     private View view1,view2,view3;//各個頁卡
     private LinearLayout speaker,home,settings;
+    private LinearLayout commends;
+    private ArrayList PicturePath;//用来存放sd卡内的所有图片路径,在onCreate内使用
+    private likeBase likeBase;
+    private PictureBase pictureBase;
+    private messageBase messageBase;
+    private UserBase userBase;
+    private View viewlay1;
+    private static final int  KEY_COMMENT = 1;
+    ArrayList indexarray;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//關閉狀態列
         setContentView(R.layout.petlogactivity);
+        InitInflaster();
         InitImageView();
         InitTextView();
         InitViewPager();
         InitLinearLayout();
+        InitBase();
+    }
 
-        LinearLayout notification = (LinearLayout)findViewById(R.id.notification_num);
-        BadgeView n = new BadgeView(this, notification);
-        n.setText("3");
-        n.show();
+    private void InitInflaster(){
+        LayoutInflater inflater = LayoutInflater.from(PetlogActivity.this);
+        viewlay1 = inflater.inflate(R.layout.lay1, null);
     }
 
     private void InitViewPager() {
         viewPager=(ViewPager) findViewById(R.id.vPager);
+
+        viewPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent();
+                intent.setClass(PetlogActivity.this,CommendsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         views=new ArrayList<View>();
         LayoutInflater inflater=getLayoutInflater();
         view1=inflater.inflate(R.layout.lay1, null);
@@ -85,9 +105,21 @@ public class PetlogActivity extends Activity {
         home = (LinearLayout)findViewById(R.id.home);
         settings = (LinearLayout)findViewById(R.id.settings);
 
+
         speaker.setOnClickListener(MySpeakerListener);
         home.setOnClickListener(MyHomeListener);
         settings.setOnClickListener(MySettingListener);
+        //commends = (LinearLayout)viewlay1.findViewById(R.id.commends);
+
+        //commends.setOnClickListener(MyCommendsListener);
+        /*commends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent();
+                intent.setClass(PetlogActivity.this,CommendsActivity.class);
+                startActivity(intent);
+            }
+        });*/
     }
     /**
      2      * 初始化动画
@@ -105,9 +137,23 @@ public class PetlogActivity extends Activity {
         imageView.setImageMatrix(matrix);// 設置動畫初始位置
     }
 
-    /**
-     *
-     * 头标点击监听 3 */
+    private void InitBase(){
+        likeBase=new likeBase();
+        pictureBase=new PictureBase();
+        messageBase=new messageBase();
+        userBase=new UserBase();
+        //Toast.makeText(this,"find "+PicturePath.size()+" picture",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == KEY_COMMENT){
+            indexarray = data.getIntegerArrayListExtra(PictureChoose.KEY_PICTUREINDEX);
+        }
+    }
+
+    // -------------------       ↓設定監聽器↓       -------------------//
     private class MyOnClickListener implements View.OnClickListener {
         private int index=0;
         public MyOnClickListener(int i){
@@ -116,7 +162,6 @@ public class PetlogActivity extends Activity {
         public void onClick(View v) {
             viewPager.setCurrentItem(index);
         }
-
     }
 
     private View.OnClickListener MyHomeListener = new View.OnClickListener() {
@@ -146,6 +191,18 @@ public class PetlogActivity extends Activity {
         }
     };
 
+    private View.OnClickListener MyCommendsListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent= new Intent();
+            intent.setClass(PetlogActivity.this,CommendsActivity.class);
+            startActivityForResult(intent,KEY_COMMENT);
+        }
+    };
+
+    // -------------------       ↑設定監聽器↑       -------------------//
+
+
     public class MyViewPagerAdapter extends PagerAdapter {
         private List<View> mListViews;
 
@@ -158,17 +215,29 @@ public class PetlogActivity extends Activity {
             container.removeView(mListViews.get(position));
         }
 
-
         @Override
         public Object instantiateItem(ViewGroup container, int position) {  //設計viewpager的地方
             container.addView(mListViews.get(position), 0);
+            ImageView Humanhead;
 
             switch(position){
                 case 0:
-//
+                    Humanhead=(ImageView)findViewById(R.id.Humanhead);
+                    Humanhead.setImageBitmap(PictureBase.getdefaultbitmapfromSD());
+                    commends = (LinearLayout)findViewById(R.id.commends);
+                    commends.setOnClickListener(MyCommendsListener);
+                    /*commends.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent();
+                            intent.setClass(PetlogActivity.this, CommendsActivity.class);
+                            startActivity(intent);
+                        }
+                    });*/
                     break;
                 case 1:
-
+                    Humanhead=(ImageView)findViewById(R.id.Humanhead);
+                    Humanhead.setImageBitmap(PictureBase.getdefaultbitmapfromSD());
                     break;
                 case 2:
 

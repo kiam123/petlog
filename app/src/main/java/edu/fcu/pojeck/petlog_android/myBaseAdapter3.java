@@ -5,25 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 
 /**
- * Created by kiam on 21/05/2016.
+ * Created by kiam on 28/05/2016.
  */
-public class myBaseAdapter1 extends BaseAdapter {
+public class myBaseAdapter3 extends BaseAdapter {
     LayoutInflater layoutInflater;
     int count=0;
 
     private class View_TalkLayout{
-        ImageView humanhead;
 
     }
 
-    public myBaseAdapter1(Context context){
+    public myBaseAdapter3(Context context){
         layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void addItem(){  //還沒完成
+    public void addItem(){
 
     }
 
@@ -46,7 +44,7 @@ public class myBaseAdapter1 extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View_TalkLayout view_talkLayout;
         if(convertView == null){
-            convertView = layoutInflater.inflate(R.layout.lay1listview,null);
+            convertView = layoutInflater.inflate(R.layout.lay3listview,null);
             view_talkLayout = new View_TalkLayout();
 
             convertView.setTag(view_talkLayout);

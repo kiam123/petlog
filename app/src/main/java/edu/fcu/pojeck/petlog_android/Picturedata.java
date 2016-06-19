@@ -1,12 +1,14 @@
 package edu.fcu.pojeck.petlog_android;
 
+import android.graphics.Bitmap;
+
 import java.io.File;
 
 /**
  * Created by fomsing on 2016/5/14.
  */
 public class Picturedata {
-    private File[] icon;
+    private Bitmap[] icon;//File到Bitmap的修改
     private String word;
     private int ownerid;
     private int id;//the id of itself
@@ -16,7 +18,7 @@ public class Picturedata {
     private String date;
     public final static int MAXMESSAGE=100;//how much message it can contain
 
-    Picturedata(File[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB,int newid){
+    Picturedata(Bitmap[] icon, String word, int ownerid, String date,messageBase MB,likeBase LB,int newid){//File到Bitmap的修改
         this.icon=icon;
         this.word=word;
         this.ownerid=ownerid;
@@ -31,9 +33,9 @@ public class Picturedata {
         return likeid;
     }
 
-    public File[] getIcon() {
+    public Bitmap[] getIcon() {
         return icon;
-    }
+    }//File到Bitmap的修改
 
     public int getId() {
         return id;
