@@ -15,15 +15,21 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.readystatesoftware.viewbadger.BadgeView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PetlogActivity extends Activity {
 
+    private ListView PopularlistView;
+    private LinearLayout notification = null;
     private ViewPager viewPager;//頁面內容
     private ImageView imageView;// 動畫圖片
     private TextView textView1,textView2,textView3;
@@ -54,6 +60,38 @@ public class PetlogActivity extends Activity {
         InitViewPager();
         InitLinearLayout();
         InitBase();
+        BadgeView("3"); //show notification num
+    }
+
+    /**
+     *  notification
+     */
+    protected void BadgeView(String notificationNum)
+    {
+        notification = (LinearLayout) findViewById(R.id.notification_num);
+        BadgeView badgeView = new BadgeView(this, notification);
+        badgeView.setText(notificationNum);
+        badgeView.show();
+    }
+
+    /**
+     *  Popular Page
+     */
+    private void popular_list_grid()
+    {
+        ArrayList<ArticleItem> item = new ArrayList<ArticleItem>();
+
+        item.add(new ArticleItem(R.drawable.icon, "小飛飛", "winky_swl", "53"));
+        item.add(new ArticleItem(R.drawable.icon, "我的小飛戈", "Alan", "42"));
+        item.add(new ArticleItem(R.drawable.icon, "飛飛", "winky_swl", "20"));
+        item.add(new ArticleItem(R.drawable.icon, "飛飛喵", "winky_swl", "5"));
+
+        ArticleArrayAdapter adapter = new ArticleArrayAdapter(PetlogActivity.this, item);
+        PopularlistView = (ListView)findViewById(R.id.hot_listView);
+        PopularlistView.setAdapter(adapter);
+
+        GridView grid = (GridView)findViewById(R.id.hot_gridview);
+        grid.setAdapter(new GridViewAdapter(getApplicationContext()));
     }
 
     private void InitInflaster(){
@@ -240,6 +278,7 @@ public class PetlogActivity extends Activity {
                     Humanhead.setImageBitmap(PictureBase.getdefaultbitmapfromSD());
                     break;
                 case 2:
+                    popular_list_grid();
 
                     break;
             }
