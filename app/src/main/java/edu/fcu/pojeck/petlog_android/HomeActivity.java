@@ -40,8 +40,11 @@ public class HomeActivity extends AppCompatActivity {
 
     protected void onActivityResult (int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        iv.setBackgroundColor(android.graphics.Color.parseColor("#00000000"));
+
         if(resultCode == RESULT_OK && requestCode==SELECTED_PIC){
+            iv.setBackgroundColor(android.graphics.Color.parseColor("#00000000")); /*如果有選圖片 預設圖片就會設定為透明*/
+
+            /*把大頭貼圖片換成選取的圖片*/
             ImageUri = data.getData();
             iv.setImageURI(ImageUri);
         }
