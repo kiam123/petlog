@@ -37,6 +37,11 @@ public class PictureChoose extends AppCompatActivity {//从相机中加入图片
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(PictureChoose.this,"postion:"+position,Toast.LENGTH_SHORT).show();
+                for(int i=0;i<chooseint.size();i++){
+                    if(((Integer)chooseint.get(i)).intValue()==position){
+                        return;
+                    }
+                }
                 adapter.changecolor(position);
                 chooseint.add(new Integer(position));
             }

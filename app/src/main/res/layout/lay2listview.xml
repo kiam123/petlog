@@ -7,76 +7,40 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="110dp">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="65dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="70dp"
-                    android:layout_height="55dp"
-                    android:layout_marginLeft="20dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/imageView3" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="New Text"
-                        android:id="@+id/textView3" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:weightSum="1">
+        android:layout_height="wrap_content"
+        android:weightSum="1" >
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="50dp">
+            android:layout_width="64dp"
+            android:layout_height="43dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="4dp" >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView" />
+                android:id="@+id/humanhead"/>
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
-                android:text="New Text"
-                android:id="@+id/textView"
-                android:layout_marginTop="10dp"
+                android:text="名字"
+                android:id="@+id/name"
+                android:layout_marginTop="5dp"
                 android:layout_weight="0.3" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="15dp"
-                android:text="New Text"
-                android:id="@+id/textView2"
+                android:text="時間"
+                android:id="@+id/time"
                 android:layout_marginTop="1dp"
                 android:layout_weight="0.3" />
         </LinearLayout>
@@ -89,10 +53,46 @@
         android:weightSum="1"
         android:layout_weight="0.75">
 
-        <ImageView
+        <GridView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2" />
+            android:id="@+id/gridView2"
+            android:numColumns= "3"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="贊"
+                android:id="@+id/textView3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="留言"
+                android:id="@+id/textView8" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package edu.fcu.pojeck.petlog_android;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
@@ -50,18 +51,21 @@ public class PetlogActivity extends Activity {
     private UserBase userBase;
     private View viewlay1;
     private static final int  KEY_COMMENT1 = 1,KEY_COMMENT2=2;
-    private ListView listView;
+    private ListView listView,listView2;
     private myBaseAdapter1 myAdapter1;
+    private myBaseAdapter2 myAdapter2;
+    public  static Bitmap header=PictureBase.getfirstbitmapfromSD();
     String et_msg ="";
     ArrayList indexarray;
     ArrayList<Map<String, Object>> mDatas = new ArrayList<Map<String, Object>>();
+    ArrayList<Map<String, Object>> mDatas2 = new ArrayList<Map<String, Object>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//關閉狀態列
         setContentView(R.layout.petlogactivity);
-        //InitLiview1();
+
         InitInflaster();
         InitImageView();
         InitTextView();
@@ -187,6 +191,13 @@ public class PetlogActivity extends Activity {
         listView.setAdapter(myAdapter1);
     }
 
+    public void InitLisview2(){
+        listView2 = (ListView)findViewById(R.id.listView2);
+        myAdapter2 = new myBaseAdapter2(this);
+
+        listView2.setAdapter(myAdapter2);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -217,6 +228,23 @@ public class PetlogActivity extends Activity {
                     indexarray = new ArrayList();
                 }
                 myAdapter1.addItem(new comment_data1(1,et_msg,"krlee",hour+":"+minute+":"+second),mDatas);
+            }
+            else if(requestCode == KEY_COMMENT2){
+                Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
+
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+                int second = c.get(Calendar.SECOND);
+
+                indexarray = data.getIntegerArrayListExtra(PictureChoose.KEY_PICTUREINDEX);
+                Map<String, Object> map2 = new HashMap<>();
+                ArrayList<Integer> urls2 = new ArrayList<Integer>();
+                for(int i=0;i < indexarray.size();i++)
+                    urls2.add((Integer)indexarray.get(i));
+                map2.put("urls", urls2);
+                mDatas2.add(map2);
+
+                myAdapter2.addItem(new comment_data2(1,"krlee",hour+":"+minute+":"+second),mDatas2);
             }
         }
     }
@@ -300,13 +328,14 @@ public class PetlogActivity extends Activity {
                 case 0:
                     InitLiview1();
                     Humanhead=(ImageView)findViewById(R.id.Humanhead);
-                    Humanhead.setImageBitmap(PictureBase.getfirstbitmapfromSD());
+                    Humanhead.setImageBitmap(header);
                     commends1 = (LinearLayout)findViewById(R.id.commends1);
                     commends1.setOnClickListener(MyCommendsListener);
                     break;
                 case 1:
+                    InitLisview2();
                     Humanhead=(ImageView)findViewById(R.id.Humanhead);
-                    Humanhead.setImageBitmap(PictureBase.getfirstbitmapfromSD());
+                    Humanhead.setImageBitmap(header);
                     commends2 = (LinearLayout)findViewById(R.id.commends2);
                     commends2.setOnClickListener(MyCommends2Listener);
                     break;

@@ -38,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
         tv_p=(TextView)findViewById(R.id.backtv_pet);
         tv_pro=(TextView)findViewById(R.id.backtv_say);
 
+        iv.setImageBitmap(PetlogActivity.header);
         /*換大頭貼的button*/
         bt1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

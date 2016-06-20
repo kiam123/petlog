@@ -3,6 +3,7 @@ package edu.fcu.pojeck.petlog_android;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,8 @@ import java.util.List;
  */
 public class ChooseAdapter extends ArrayAdapter{
     Context context;
-
+    View convertV;
+    ViewGroup par;
     public ChooseAdapter(Context context, List objects) {
         super(context, 0, objects);
         this.context=context;
@@ -27,6 +29,8 @@ public class ChooseAdapter extends ArrayAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        convertV=convertView;
+        par=parent;
         LayoutInflater inflater = LayoutInflater.from(context);
 
 
@@ -83,8 +87,21 @@ public class ChooseAdapter extends ArrayAdapter{
         }
         return newbm;
     }
-    public void changecolor(int position){
-        ((BitmapInt) getItem(position)).chosen=true;
+    public boolean changecolor(int position){
+        if(((BitmapInt) getItem(position)).chosen==false) {
+            ((BitmapInt) getItem(position)).chosen = true;
+            // View layout=getView(position,convertV,par);
+            //TextView colorview=(TextView) layout.findViewById(R.id.chooseornot);
+            //colorview.setBackgroundColor(android.graphics.Color.RED);
+            this.notifyDataSetChanged();
+            return true;
+        }
+        else {
+            ((BitmapInt) getItem(position)).chosen = false;
+            Log.v("position",""+((BitmapInt) getItem(position)).chosen);
+            this.notifyDataSetChanged();
+            return  false;
+        }
     }
 
  }

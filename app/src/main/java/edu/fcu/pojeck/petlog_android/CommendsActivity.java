@@ -95,7 +95,8 @@ public class CommendsActivity extends AppCompatActivity {
             }
             Log.d("logggg", "size after" + resultArray.size());
             taskView=(ImageView)findViewById(R.id.taskimg);
-            taskView.setImageBitmap((Bitmap)resultArray.get(0));
+            if(resultArray.size()>0)
+                taskView.setImageBitmap((Bitmap)resultArray.get(0));
             //Toast.makeText(CommendsActivity.this,resultArray.size(),Toast.LENGTH_SHORT).show();
             //reaultArray就是選擇出來的圖片組
         }
