@@ -48,6 +48,10 @@
             android:name=".Commends2Activity"
             android:label="@string/title_activity_commends2" >
         </activity>
+        <activity
+            android:name=".homeprofile">
+        </activity>
+
     </application>
 
 </manifest>

@@ -111,7 +111,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="197dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp">
 
             <LinearLayout
@@ -125,11 +125,29 @@
                     android:text="換頭貼"
                     android:id="@+id/changebt" />
 
-                <TextView
-                    android:layout_width="268dp"
-                    android:layout_height="match_parent"
-                    android:text="按編輯的按鈕即可編輯的介紹欄"
-                    android:id="@+id/introduce" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="285dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="       "
+                        android:id="@+id/back_name" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="    "
+                        android:id="@+id/backtv_pet" />
+
+                    <TextView
+                        android:layout_width="268dp"
+                        android:layout_height="wrap_content"
+                        android:text="按編輯的按鈕即可編輯的介紹欄"
+                        android:id="@+id/backtv_say" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
