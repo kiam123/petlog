@@ -33,18 +33,11 @@ public class NotificationActivity extends AppCompatActivity {
         item.addItem(new NotificationItem(R.drawable.settings, "winky_swl like your photo", R.drawable.home));*/
         ArrayList<NotificationItem> item = new ArrayList<NotificationItem>();
 
-        item.add(new NotificationItem(R.drawable.settings, "winky_swl like your photo", "4 day ago.", R.drawable.home));
-        item.add(new NotificationItem(R.drawable.home, "winky_swl like your photo", "4 day ago.", R.drawable.settings));
-        item.add(new NotificationItem(R.drawable.settings, "winky_swl like your photo", "4 day ago.", R.drawable.home));
-        item.add(new NotificationItem(R.drawable.home, "winky_swl like your photo", "4 day ago.", R.drawable.settings));
-        item.add(new NotificationItem(R.drawable.settings, "winky_swl like your photo", "4 day ago.", R.drawable.home));
-        item.add(new NotificationItem(R.drawable.home, "winky_swl like your photo", "4 day ago.", R.drawable.settings));
-        item.add(new NotificationItem(R.drawable.settings, "winky_swl like your photo", "4 day ago.", R.drawable.home));
-        item.add(new NotificationItem(R.drawable.home, "winky_swl like your photo", "4 day ago.", R.drawable.settings));
-        item.add(new NotificationItem(R.drawable.settings, "winky_swl like your photo", "4 day ago.", R.drawable.home));
-        item.add(new NotificationItem(R.drawable.home, "winky_swl like your photo", "4 day ago.", R.drawable.settings));
-        item.add(new NotificationItem(R.drawable.settings, "winky_swl like your photo", "4 day ago.", R.drawable.home));
-        item.add(new NotificationItem(R.drawable.home, "winky_swl like your photo", "4 day ago.", R.drawable.settings));
+        item.add(new NotificationItem(R.drawable.u1, "alanwong like your photo", "1 day ago.", R.drawable.p2));
+        item.add(new NotificationItem(R.drawable.u2, "samleung like your photo", "2 day ago.", R.drawable.p1));
+        item.add(new NotificationItem(R.drawable.u3, "maychan like your photo", "2 day ago.", R.drawable.p1));
+        item.add(new NotificationItem(R.drawable.u2, "mike7263 like your photo", "4 day ago.", R.drawable.p1));
+
 
         NotificationArrayAdapter adapter = new NotificationArrayAdapter(this, item);
 

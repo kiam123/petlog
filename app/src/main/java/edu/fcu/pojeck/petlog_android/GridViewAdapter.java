@@ -9,11 +9,11 @@ import android.widget.ImageView;
 
 public class GridViewAdapter extends BaseAdapter{
 
-	Integer[] data={R.drawable.icon,R.drawable.icon,
-					R.drawable.icon,R.drawable.icon,
-					R.drawable.icon,R.drawable.icon,
-					R.drawable.icon,R.drawable.icon,
-					R.drawable.icon};
+	Integer[] data={R.drawable.p1,R.drawable.p8,
+					R.drawable.p2,R.drawable.p9,
+					R.drawable.p3,R.drawable.p7,
+					R.drawable.p5,R.drawable.p6,
+					R.drawable.p4};
 
 	private Context context;
 

@@ -15,10 +15,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.readystatesoftware.viewbadger.BadgeView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,6 +31,8 @@ import java.util.Map;
 
 public class PetlogActivity extends Activity {
 
+    private ListView PopularlistView;
+    private LinearLayout notification = null;
     private ViewPager viewPager;//頁面內容
     private ImageView imageView;// 動畫圖片
     private TextView textView1,textView2,textView3;
@@ -63,6 +68,38 @@ public class PetlogActivity extends Activity {
         InitViewPager();
         InitLinearLayout();
         InitBase();
+        notification("4");
+    }
+
+    /**
+     *  notification
+     */
+    protected void notification(String notificationNum)
+    {
+        notification = (LinearLayout) findViewById(R.id.notification_num);
+        BadgeView badgeView = new BadgeView(this, notification);
+        badgeView.setText(notificationNum);
+        badgeView.show();
+    }
+
+    /**
+     *  Popular Page
+     */
+    private void popular_list_grid()
+    {
+        ArrayList<ArticleItem> item = new ArrayList<ArticleItem>();
+
+        item.add(new ArticleItem(R.drawable.u1, "#圖 狗 什麼事讓你這個表情", "kuuznetsova", "96"));
+        item.add(new ArticleItem(R.drawable.u2, "#內有圖#笨柴", "r_r_mami", "88"));
+        item.add(new ArticleItem(R.drawable.u3, "#圖#蜥蜴 也要打扮的帥氣", "yuriyuri4mama", "65"));
+        item.add(new ArticleItem(R.drawable.u4, "#圖 #貓 貓貓的午睡時間", "rosha.e", "59"));
+
+        ArticleArrayAdapter adapter = new ArticleArrayAdapter(PetlogActivity.this, item);
+        PopularlistView = (ListView)findViewById(R.id.hot_listView);
+        PopularlistView.setAdapter(adapter);
+
+        GridView grid = (GridView) findViewById(R.id.hot_gridview);
+        grid.setAdapter(new GridViewAdapter(getApplicationContext()));
     }
 
     private void InitInflaster(){
@@ -274,7 +311,7 @@ public class PetlogActivity extends Activity {
                     commends2.setOnClickListener(MyCommends2Listener);
                     break;
                 case 2:
-
+                    popular_list_grid();
                     break;
             }
 
