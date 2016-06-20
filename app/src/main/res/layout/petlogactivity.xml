@@ -79,7 +79,7 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="50dp"
+                    android:layout_width="32dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:id="@+id/linearLayout"
@@ -87,7 +87,7 @@
 
                     <ImageView
                         android:id="@+id/spker"
-                        android:layout_width="wrap_content"
+                        android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_weight="1.0"
                         android:gravity="center"

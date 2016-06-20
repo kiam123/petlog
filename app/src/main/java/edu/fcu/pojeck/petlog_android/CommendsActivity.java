@@ -20,7 +20,7 @@ public class CommendsActivity extends AppCompatActivity {
     private EditText et_msg;
     ImageView taskView;
     private static final int  KEY_PICTURE = 1;
-    public static final String KEY_PICTUREINDEX="PICTUREINDEX";
+    public static final String KEY_PICTUREINDEX="PICTUREINDEX",KEY_COMMENTS="COMMENT";
     public static final int fine=1;
     ArrayList indexarray;
     @Override
@@ -56,12 +56,16 @@ public class CommendsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
+            Log.v("comment",""+et_msg.getText().toString());
             if(!et_msg.getText().toString().equals("")){
-                if(indexarray.size() != 0)
-                    intent.putExtra(KEY_PICTUREINDEX,indexarray);
+                if(indexarray != null) {
+                    intent.putExtra(KEY_PICTUREINDEX, indexarray);
+                    intent.putExtra(KEY_COMMENTS,et_msg.getText().toString());
+                }
                 else {
                     indexarray = new ArrayList();
                     intent.putExtra(KEY_PICTUREINDEX,indexarray);
+                    intent.putExtra(KEY_COMMENTS,et_msg.getText().toString());
                 }
                 setResult(fine,intent);
                 finish();
@@ -79,6 +83,7 @@ public class CommendsActivity extends AppCompatActivity {
         Toast.makeText(this,"code"+requestCode,Toast.LENGTH_SHORT).show();
         if (requestCode == KEY_PICTURE){
             indexarray = data.getIntegerArrayListExtra(PictureChoose.KEY_PICTUREINDEX);
+
             //Toast.makeText(this,"result size:"+indexarray.size(),Toast.LENGTH_SHORT).show();
             ArrayList picturearray = PictureBase.getallpictureinSD();
             //Log.d("logggg", "arraysize "+picturearray.size());

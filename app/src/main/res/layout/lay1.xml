@@ -8,12 +8,12 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="110dp" >
+        android:layout_height="wrap_content" >
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content" >
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -21,7 +21,7 @@
                 android:layout_height="65dp"
                 android:background="#ebebeb"
                 android:layout_marginTop="10dp"
-                android:id="@+id/commends"
+                android:id="@+id/commends1"
                 android:focusableInTouchMode="false">
 
                 <LinearLayout
@@ -49,7 +49,7 @@
     </LinearLayout>
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/listView" />
 </LinearLayout>

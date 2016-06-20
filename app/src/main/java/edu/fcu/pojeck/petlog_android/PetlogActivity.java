@@ -15,21 +15,19 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.readystatesoftware.viewbadger.BadgeView;
-
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PetlogActivity extends Activity {
 
-    private ListView PopularlistView;
-    private LinearLayout notification = null;
     private ViewPager viewPager;//頁面內容
     private ImageView imageView;// 動畫圖片
     private TextView textView1,textView2,textView3;
@@ -39,59 +37,32 @@ public class PetlogActivity extends Activity {
     private int bmpW;// 動畫圖片寬度
     private View view1,view2,view3;//各個頁卡
     private LinearLayout speaker,home,settings;
-    private LinearLayout commends;
+    private LinearLayout commends1,commends2;
     private ArrayList PicturePath;//用来存放sd卡内的所有图片路径,在onCreate内使用
     private likeBase likeBase;
     private PictureBase pictureBase;
     private messageBase messageBase;
     private UserBase userBase;
     private View viewlay1;
-    private static final int  KEY_COMMENT = 1;
+    private static final int  KEY_COMMENT1 = 1,KEY_COMMENT2=2;
+    private ListView listView;
+    private myBaseAdapter1 myAdapter1;
+    String et_msg ="";
     ArrayList indexarray;
+    ArrayList<Map<String, Object>> mDatas = new ArrayList<Map<String, Object>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//關閉狀態列
         setContentView(R.layout.petlogactivity);
+        //InitLiview1();
         InitInflaster();
         InitImageView();
         InitTextView();
         InitViewPager();
         InitLinearLayout();
         InitBase();
-        BadgeView("3"); //show notification num
-    }
-
-    /**
-     *  notification
-     */
-    protected void BadgeView(String notificationNum)
-    {
-        notification = (LinearLayout) findViewById(R.id.notification_num);
-        BadgeView badgeView = new BadgeView(this, notification);
-        badgeView.setText(notificationNum);
-        badgeView.show();
-    }
-
-    /**
-     *  Popular Page
-     */
-    private void popular_list_grid()
-    {
-        ArrayList<ArticleItem> item = new ArrayList<ArticleItem>();
-
-        item.add(new ArticleItem(R.drawable.icon, "小飛飛", "winky_swl", "53"));
-        item.add(new ArticleItem(R.drawable.icon, "我的小飛戈", "Alan", "42"));
-        item.add(new ArticleItem(R.drawable.icon, "飛飛", "winky_swl", "20"));
-        item.add(new ArticleItem(R.drawable.icon, "飛飛喵", "winky_swl", "5"));
-
-        ArticleArrayAdapter adapter = new ArticleArrayAdapter(PetlogActivity.this, item);
-        PopularlistView = (ListView)findViewById(R.id.hot_listView);
-        PopularlistView.setAdapter(adapter);
-
-        GridView grid = (GridView)findViewById(R.id.hot_gridview);
-        grid.setAdapter(new GridViewAdapter(getApplicationContext()));
     }
 
     private void InitInflaster(){
@@ -147,17 +118,6 @@ public class PetlogActivity extends Activity {
         speaker.setOnClickListener(MySpeakerListener);
         home.setOnClickListener(MyHomeListener);
         settings.setOnClickListener(MySettingListener);
-        //commends = (LinearLayout)viewlay1.findViewById(R.id.commends);
-
-        //commends.setOnClickListener(MyCommendsListener);
-        /*commends.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent();
-                intent.setClass(PetlogActivity.this,CommendsActivity.class);
-                startActivity(intent);
-            }
-        });*/
     }
     /**
      2      * 初始化动画
@@ -183,11 +143,44 @@ public class PetlogActivity extends Activity {
         //Toast.makeText(this,"find "+PicturePath.size()+" picture",Toast.LENGTH_LONG).show();
     }
 
+    public void InitLiview1(){
+        listView = (ListView)findViewById(R.id.listView);
+        myAdapter1 = new myBaseAdapter1(this);
+
+        listView.setAdapter(myAdapter1);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == KEY_COMMENT){
-            indexarray = data.getIntegerArrayListExtra(PictureChoose.KEY_PICTUREINDEX);
+        if(data != null) {
+            if (requestCode == KEY_COMMENT1) {
+                Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
+
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+                int second = c.get(Calendar.SECOND);
+
+                indexarray = data.getIntegerArrayListExtra(PictureChoose.KEY_PICTUREINDEX);
+                et_msg = data.getStringExtra(CommendsActivity.KEY_COMMENTS);
+                if(indexarray.size() != 0)
+                {
+                    Map<String, Object> map2 = new HashMap<>();
+                    ArrayList<Integer> urls2 = new ArrayList<Integer>();
+                    for(int i=0;i < indexarray.size();i++)
+                        urls2.add((Integer)indexarray.get(i));
+                    map2.put("urls", urls2);
+                    mDatas.add(map2);
+                }
+                else {
+                    Map<String, Object> map2 = new HashMap<>();
+                    ArrayList<Integer> urls2 = new ArrayList<Integer>();
+                    map2.put("urls", urls2);
+                    mDatas.add(map2);
+                    indexarray = new ArrayList();
+                }
+                myAdapter1.addItem(new comment_data1(1,et_msg,"krlee",hour+":"+minute+":"+second),mDatas);
+            }
         }
     }
 
@@ -234,10 +227,18 @@ public class PetlogActivity extends Activity {
         public void onClick(View v) {
             Intent intent= new Intent();
             intent.setClass(PetlogActivity.this,CommendsActivity.class);
-            startActivityForResult(intent,KEY_COMMENT);
+            startActivityForResult(intent,KEY_COMMENT1);
         }
     };
 
+    private View.OnClickListener MyCommends2Listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(PetlogActivity.this,Commends2Activity.class);
+            startActivityForResult(intent,KEY_COMMENT2);
+        }
+    };
     // -------------------       ↑設定監聽器↑       -------------------//
 
 
@@ -260,25 +261,19 @@ public class PetlogActivity extends Activity {
 
             switch(position){
                 case 0:
+                    InitLiview1();
                     Humanhead=(ImageView)findViewById(R.id.Humanhead);
-                    Humanhead.setImageBitmap(PictureBase.getdefaultbitmapfromSD());
-                    commends = (LinearLayout)findViewById(R.id.commends);
-                    commends.setOnClickListener(MyCommendsListener);
-                    /*commends.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent();
-                            intent.setClass(PetlogActivity.this, CommendsActivity.class);
-                            startActivity(intent);
-                        }
-                    });*/
+                    Humanhead.setImageBitmap(PictureBase.getfirstbitmapfromSD());
+                    commends1 = (LinearLayout)findViewById(R.id.commends1);
+                    commends1.setOnClickListener(MyCommendsListener);
                     break;
                 case 1:
                     Humanhead=(ImageView)findViewById(R.id.Humanhead);
-                    Humanhead.setImageBitmap(PictureBase.getdefaultbitmapfromSD());
+                    Humanhead.setImageBitmap(PictureBase.getfirstbitmapfromSD());
+                    commends2 = (LinearLayout)findViewById(R.id.commends2);
+                    commends2.setOnClickListener(MyCommends2Listener);
                     break;
                 case 2:
-                    popular_list_grid();
 
                     break;
             }

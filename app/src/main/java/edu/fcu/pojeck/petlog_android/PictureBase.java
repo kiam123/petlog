@@ -70,6 +70,14 @@ public class PictureBase {
        }
        return map;
     }
+    public static Bitmap getfirstbitmapfromSD(){
+        ArrayList list=getImagesPathFromSD();
+        Bitmap map=null;
+
+            map= BitmapFactory.decodeFile((String)list.get(0));
+
+        return map;
+    }
     public  static ArrayList getallpictureinSD(){
         ArrayList list=getImagesPathFromSD();
         ArrayList bitmaplist=new ArrayList();

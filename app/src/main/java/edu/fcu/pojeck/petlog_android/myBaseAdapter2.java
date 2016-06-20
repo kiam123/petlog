@@ -23,6 +23,7 @@ public class myBaseAdapter2 extends BaseAdapter {
 
     public void addItem(){
 
+        count++;
     }
 
     @Override

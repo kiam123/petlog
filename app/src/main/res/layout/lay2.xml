@@ -21,7 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:background="#ebebeb"
-                android:layout_marginTop="10dp" >
+                android:layout_marginTop="10dp"
+                android:id="@+id/commends2">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -39,7 +40,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="發表文章"
+                    android:text="發表圖片"
                     android:id="@+id/textView4"
                     android:layout_marginTop="20dp" />
             </LinearLayout>

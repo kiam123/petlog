@@ -18,10 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity
+        <!--
+            <activity
             android:name=".PetlogActivity"
             android:label="PetlogActivity">
-            </activity>-->
+            </activity>
+        -->
         <activity
             android:name=".PictureChoose"
             android:label="@string/title_activity_picture_choose" >
@@ -41,6 +43,10 @@
         <activity
             android:name=".CommendsActivity"
             android:label="@string/title_activity_comments" >
+        </activity>
+        <activity
+            android:name=".Commends2Activity"
+            android:label="@string/title_activity_commends2" >
         </activity>
     </application>
 
