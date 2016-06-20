@@ -72,6 +72,9 @@ public class PictureBase {
     }
     public static Bitmap getfirstbitmapfromSD(){
         ArrayList list=getImagesPathFromSD();
+        if(list.size() <= 0){
+            return  null;
+        }
         Bitmap map=null;
 
             map= BitmapFactory.decodeFile((String)list.get(0));
